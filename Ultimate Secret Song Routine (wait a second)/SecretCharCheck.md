@@ -1,0 +1,50 @@
+# Secret Character Check
+
+Create a new class containing an Array of Strings.
+
+```haxe
+class SpecialCheck
+{
+    public static final SPECIAL_CHARS:Array<String> =
+    [
+        "cally",
+        "woops",
+        "merg",
+        "zephyrus"
+    ];
+```
+
+Then add a function that checks for files with the names in the string array.
+
+```haxe
+public static function checkSpecials()
+    {
+        for (charName in SPECIAL_CHARS)
+        {
+            if (FileSystem.exists("assets/special/" + charName.toLowerCase() + ".chr")) 
+            {
+                trace('FUNNY SECRET FOUND, CONGRATS LMAO ' + charName);
+                handleSpecial(charName);
+            }
+        }
+    }
+```
+
+`handleSpecial`:
+```haxe
+public static function handleSpecial(char:String)
+{
+    trace(char+' found');
+    switch (char)
+    { // You will also want to create a public static bool array in ClientPrefs for this to work. See the Adding Save Data tutorial
+        case "cally":
+            ClientPrefs.secretChars[0] = true;
+        case "woops":
+            ClientPrefs.secretChars[1] = true;
+        case "merg":
+            ClientPrefs.secretChars[2] = true;
+        case "zsh":
+            ClientPrefs.secretChars[3] = true;
+        }
+    }
+}
